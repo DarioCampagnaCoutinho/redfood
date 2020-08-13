@@ -1,8 +1,10 @@
 package com.java.redfood.config;
 
+import com.java.redfood.domain.Category;
 import com.java.redfood.domain.Order;
 import com.java.redfood.domain.User;
 import com.java.redfood.domain.enums.OrderStatus;
+import com.java.redfood.repositories.CategoryRepository;
 import com.java.redfood.repositories.OrderRepository;
 import com.java.redfood.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,19 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
 
         User u1 = new User(null, "Dario", "dario@gmaio.com", "33 94567-9078", "1234");
         User u2 = new User(null, "Mario", "mario@gmaio.com", "34 94567-9090", "1256");
